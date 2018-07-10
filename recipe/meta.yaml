@@ -1,5 +1,4 @@
-{% set version = '1.8-1' %}
-
+{% set version = '1.8-2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,34 +9,37 @@ package:
 source:
   fn: zoo_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/zoo_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: d93d88500374fce7f5c047f25240ac60483bcfd6fadf81df4eb2b879ad2ccc9a
+    - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
+  sha256: 7dd315290def0ea6b6f127290d9e769e54cd98668f2898fb104c9758fb8bfcd2
 
 build:
+  merge_build_host: True  # [win]
   number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed  # [win]
+    - {{posix}}coreutils  # [win]
+  host:
     - r-base
     - r-lattice >=0.20_27
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-lattice >=0.20_27
-    - libgcc  # [not win]
 
 test:
   commands:
-    - $R -e "library('zoo')"  # [not win]
+    - $R -e "library('zoo')"           # [not win]
     - "\"%R%\" -e \"library('zoo')\""  # [win]
 
 about:
@@ -58,3 +60,4 @@ extra:
     - bgruening
     - daler
     - jdblischak
+    - cbrueffer
