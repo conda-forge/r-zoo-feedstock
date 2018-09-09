@@ -1,4 +1,4 @@
-{% set version = '1.8-2' %}
+{% set version = '1.8-3' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,11 +11,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: 7dd315290def0ea6b6f127290d9e769e54cd98668f2898fb104c9758fb8bfcd2
+  sha256: 20b681c20531f12d26e4ac590712fcfa22e7f4e94fc69d804bb50abcf99b5596
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -27,8 +27,9 @@ requirements:
     - {{native}}toolchain        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
-    - {{posix}}sed  # [win]
-    - {{posix}}coreutils  # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-lattice >=0.20_27
@@ -61,3 +62,4 @@ extra:
     - daler
     - jdblischak
     - cbrueffer
+    - dbast
