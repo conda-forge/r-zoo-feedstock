@@ -1,4 +1,4 @@
-{% set version = '1.8-5' %}
+{% set version = '1.8-6' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: 8773969973d28d7d1a48f74b73be1dbd97acb3b22a4668a102e8bb585a7de826
+  sha256: 2217a4f362f2201443b5fdbfd9a77d9a6caeecb05f02d703ee8b3b9bf2af37cc
 
 build:
   merge_build_host: True  # [win]
@@ -21,8 +21,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]
@@ -57,8 +57,8 @@ extra:
     - croth1
 
 # Package: zoo
-# Version: 1.8-5
-# Date: 2019-03-19
+# Version: 1.8-6
+# Date: 2019-05-27
 # Title: S3 Infrastructure for Regular and Irregular Time Series (Z's Ordered Observations)
 # Authors@R: c(person(given = "Achim", family = "Zeileis", role = c("aut", "cre"), email = "Achim.Zeileis@R-project.org", comment = c(ORCID = "0000-0003-0918-3766")), person(given = "Gabor", family = "Grothendieck", role = "aut", email = "ggrothendieck@gmail.com"), person(given = c("Jeffrey", "A."), family = "Ryan", role = "aut", email = "jeff.a.ryan@gmail.com"), person(given = c("Joshua", "M."), family = "Ulrich", role = "ctb", email = "josh.m.ulrich@gmail.com"), person(given = "Felix", family = "Andrews", role = "ctb", email = "felix@nfrac.org"))
 # Description: An S3 class with methods for totally ordered indexed observations. It is particularly aimed at irregular time series of numeric vectors/matrices and factors. zoo's key design goals are independence of a particular index/date/time class and consistency with ts and base R by providing methods to extend standard generics.
@@ -68,8 +68,8 @@ extra:
 # License: GPL-2 | GPL-3
 # URL: http://zoo.R-Forge.R-project.org/
 # NeedsCompilation: yes
-# Packaged: 2019-03-19 09:21:57 UTC; zeileis
+# Packaged: 2019-05-27 10:36:45 UTC; zeileis
 # Author: Achim Zeileis [aut, cre] (<https://orcid.org/0000-0003-0918-3766>), Gabor Grothendieck [aut], Jeffrey A. Ryan [aut], Joshua M. Ulrich [ctb], Felix Andrews [ctb]
 # Maintainer: Achim Zeileis <Achim.Zeileis@R-project.org>
 # Repository: CRAN
-# Date/Publication: 2019-03-21 10:18:54 UTC
+# Date/Publication: 2019-05-28 08:00:53 UTC
