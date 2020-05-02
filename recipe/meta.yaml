@@ -1,4 +1,4 @@
-{% set version = "1.8-7" %}
+{% set version = "1.8-8" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: 9e072ddc8f245adcdeb230cbf0c818db9c028c320894f48211758da2bf2085f0
+  sha256: 4e8cc4065047ba12e103b9664f3b607c770673096e9c2b694fad2b2ec3203ce7
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -44,12 +44,10 @@ test:
 about:
   home: http://zoo.R-Forge.R-project.org/
   license: GPL-2 | GPL-3
-  summary: An S3 class with methods for totally ordered indexed observations. It is particularly
-    aimed at irregular time series of numeric vectors/matrices and factors. zoo's key
-    design goals are independence of a particular index/date/time class and consistency
-    with ts and base R by providing methods to extend standard generics.
+  summary: An S3 class with methods for totally ordered indexed observations. It is particularly aimed at irregular time series of numeric vectors/matrices and factors. zoo's key design goals are independence of a particular index/date/time class and consistency with ts and base R by providing methods to extend standard
+    generics.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
