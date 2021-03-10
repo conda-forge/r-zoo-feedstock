@@ -1,4 +1,4 @@
-{% set version = "1.8-8" %}
+{% set version = "1.8-9" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: 4e8cc4065047ba12e103b9664f3b607c770673096e9c2b694fad2b2ec3203ce7
+  sha256: b7be259067a8b9d4a8f5d387e0946a5ba1eb43474baa67ccf4f8bf4b15f772a3
 
 build:
   merge_build_host: true  # [win]
