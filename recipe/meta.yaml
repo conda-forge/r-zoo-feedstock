@@ -1,6 +1,5 @@
 {% set version = "1.8-12" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-zoo
@@ -13,8 +12,7 @@ source:
   sha256: e6c3862668f9e3422bced3b6fba485c76a1e91b48f5d6153822d6a61863b2fb8
 
 build:
-  merge_build_host: true  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,7 +22,9 @@ requirements:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - r-lattice                  # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -35,7 +35,6 @@ requirements:
     - r-lattice >=0.20_27
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-lattice >=0.20_27
 
 test:
