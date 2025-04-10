@@ -1,4 +1,4 @@
-{% set version = "1.8-13" %}
+{% set version = "1.8-14" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/zoo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/zoo/zoo_{{ version }}.tar.gz
-  sha256: 5315d26ba98da05d134aded588f6aeeb6cb17f3798ea3652a6b16f958ac4f697
+  sha256: a82bb6535c42ab48b125c878f924febfac800003592e00a800b5b4c528412796
 
 build:
   number: 0
